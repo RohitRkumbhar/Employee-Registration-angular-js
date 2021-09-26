@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angular APP</title>
+
+</head>
+
+<body>
+  <div class="main" ng-app="myList" ng-controller="myListController">
+    <button style="margin: 10px; color: seagreen;" ng-click="toggle()">Add+</button> <button style="margin: 10px;"
+      ng-click="toggleee()">Edit</button>
+    <div class="addItems">
+      <form name="registerform" ng-if="show">
+        <h1>Emloyee Registration</h1>
+        <br>
+        <input type="text" name="Name" placeholder="Enter your name" ng-model="newUser.name" minlength="3" required>
+        <span ng-show="registerform.name.$error.required">Please enter ur correct name</span>
+        <br><br>
+        <input type="date" date='dd-MM-yyyy' name="DOB" placeholder="Enter your Dob" ng-model="newUser.dob">
+        <span ng-show="registerform.DOB.$error.required">Please in format</span>
+        <br><br>
+        <input type="text" name="Designation" placeholder="Enter your Designation" ng-model="newUser.Designation"
+          minlength="2">
+        <span ng-show="registerform.designation.$error.required">Please enter ur correct Designation</span>
+        <br><br>
+        <button ng-click="saveUser()" ng-disabled="registerform.$invalid">Save</button>
+      </form>
+    </div>
+
+
+
+    <hr>
+    <h1>Employee Details</h1>
+    <table border="4px">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>Dob</th>
+          <th>Designation</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users  ">
+          <td> {{user.name}} </td>
+          <td>{{user.dob}}</td>
+          <td>{{user.Designation}}</td>
+          <td> <button ng-click="selectUser(user)">Edit</button> </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr><br><br>
+
+
+
+    <form name="correctionform" ng-if="show2">
+      <h1>Correction Form</h1>
+      <br>
+      <input type="text" name="name" required placeholder="Enter your name" ng-model="clickedUser.name">
+      <span ng-show="correctionform.name.$error.required" style="color: red;">Please enter ur correct name</span>
+      <br>
+      <br>
+      <input type="date" name="dob" date='dd-MM-yyyy' required placeholder="Enter your Dob" ng-model="clickedUser.dob">
+      <span ng-show="correctionform.dob.$error.required" style="color: red;">Please enter ur correct dob</span>
+      <br>
+      <br>
+      <input type="text" name="designation" required placeholder="Enter your Designation"
+        ng-model="clickedUser.Designation">
+      <span ng-show="correctionform.designation.$error.required" style="color: red;">Please enter ur correct
+        designation</span>
+
+      <br>
+      <br>
+      <button type="button" ng-disabled="correctionform.$invalid" ng-click="saveUser()">Save</button>
+    </form>
+
+
+
+
+  </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="script.js"></script>
+
+
+</body>
+
+</html>
